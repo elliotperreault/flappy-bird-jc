@@ -79,6 +79,9 @@ function loadQuestion() {
 
     try {
         question = localStorage.getItem("question");
+        if (question === null) {
+            throw "error";
+        }
         question = JSON.parse(question);
     } catch {
         localStorage.setItem("question", "{}");
