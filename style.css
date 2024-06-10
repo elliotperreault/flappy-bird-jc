@@ -74,13 +74,13 @@ body {
 }
 
 .question {
-  font-size: 5px;
+  font-size: 10px;
   padding: 1em 1em
-  border-right: 5px solid white;
+
 }
 
 .answer {
-  font-size: 5px;
+  font-size: 10px;
   padding: 1em 1em;
   background-color: #ECBD00;
 }
