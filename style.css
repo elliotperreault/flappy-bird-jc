@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+
+body {
+  text-align: center;
+
+  background-color: blanchedalmond;
+  background-size: cover;
+
+  margin: 0;
+  font-family: 'Press Start 2P', cursive;
+  user-select: none;
+
+  overflow-y: hidden;
+
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+
+  align-items: center;
+
+}
+
+.child1 {
+  background-color: blanchedalmond;
+}
+
+.child2 {
+  background-color: #5EE270;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.formative {
+  display: grid;
+
+  background-color: white;
+
+  padding: 1rem;
+  margin: 5rem;
+}
+
+.button {
+  background-color: #5EE270;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.button.button:hover {
+  opacity: 75%;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  background-color: #ECBDFF;
+  margin-bottom: 3px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  border-radius: 10px;
+  max-width: 816px;
+
+}
+.item:hover {
+  opacity: 20%;
+  background-color: #f94449;
+}
+
+.question {
+  font-size: 5px;
+  padding: 1em 1em
+  border-right: 5px solid white;
+}
+
+.answer {
+  font-size: 5px;
+  padding: 1em 1em;
+  background-color: #ECBD00;
+}
+
+
+.game {
+  margin: 0 auto;
+  width: 431px;
+}
+.title {
+
+  background: url("https://i.ibb.co/Q9yv5Jk/flappy-bird-set.png") 0% 340px;
+  padding: 2rem 0;
+  margin: 0;
+
+  font-size: 1.75rem;
+}
+.score-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 6px;
+  background: #5EE270;
+}
+
+
+#centeredDiv {
+  width: 30%;
+  height: 30%;
+  background-color: white;
+  padding: 2em;
+  border-radius: 25px;
+  
+  align-self: center;
+  justify-self: center;
+  position: absolute;
+
+  opacity: 100%;
+
+  display: grid;
+}
+
+#button {
+  border-radius: 10px;
+  margin: 5px;
+
+  pointer-events: all;
+
+  border: none;
+  background-color: #5EE270;
+  color: white;
+}
+
+#button:hover {
+  opacity: 50%;
+}
+
+#QuestionInput {
+
+  text-align: center;
+  pointer-events: all;
+  cursor: pointer;
+
+  margin: 5px;
+
+
+}
+
+#AnswerInput {
+  text-align: center;
+  pointer-events: all;
+  cursor: pointer;
+  margin: 5px;
+  margin-bottom: 25px;
+
+}
