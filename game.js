@@ -12,6 +12,9 @@ const size = [51, 36];
 const jump = -11.5;
 const cTenth = (canvas.width / 10);
 
+const goodAudio = new Audio('./good.mp3');
+const badAudio = new Audio('./wrong.mp3');
+
 let index = 0,
   flight,
   flyHeight,
@@ -100,7 +103,7 @@ const render = () => {
       flyHeight = (canvas.height / 2) - (size[1] / 2);
       // text accueil
       ctx.fillText(`Best score : ${bestScore}`, 85, 245);
-      ctx.fillText('Click to play', 90, 535);
+      ctx.fillText('Space to start', 90, 535);
       ctx.font = "bold 30px courier";
 
     }
@@ -137,7 +140,7 @@ window.onkeydown = (e) => {
       document.getElementById('button').click()
     }
     catch (e) {
-      console.log("No centeredDiv")
+      document.getElementById('OKButton').click()
     }
   }
 }
@@ -166,11 +169,14 @@ function askRandomQuestion() {
   input.type = 'text';
   input.placeholder = 'Enter your answer';
   input.style.marginBottom = '10px';
+  input.id = 'AnswerInput';
+  input.autofocus = true
 
   const button = document.createElement('button');
   button.textContent = 'OK';
   button.style.padding = '5px 10px';
   button.style.cursor = 'pointer';
+
   button.id = 'OKButton'
 
   centeredDiv.append(p)
@@ -180,9 +186,17 @@ function askRandomQuestion() {
   document.body.appendChild(centeredDiv);
 
   document.getElementById(button.id).addEventListener('click', (e) => {
-    gamePlaying = true
-    window.requestAnimationFrame(render);
-    console.log("game asd")
+
+    if (input.value == answer) {
+      goodAudio.play()
+      gamePlaying = true
+      render()
+    } else {
+      badAudio.play()
+      setTimeout(() => {
+        location.reload()
+      }, 400)
+    }
 
     centeredDiv.remove();
   });
