@@ -128,13 +128,20 @@ window.onclick = () => flight = jump;
 window.onkeydown = (e) => {
   if (e.code === 'Space') {
     scrollTo(0, 0)
-    if (gamePlaying == false && document.getElementById('centeredDiv') == null) {
-      document.getElementById("leftSide").style.display = "none";
-      gamePlaying = true;
-      document.getElementsByClassName('parent')[0].style.gridTemplateColumns = '2fr 1fr 2fr'
+    if (document.getElementById('centeredDiv') == null) {
+      if (Object.keys(JSON.parse(localStorage.getItem('question'))) != 0) {
+        if (gamePlaying == false) {
+          document.getElementById("leftSide").style.display = "none";
+          gamePlaying = true;
+          document.getElementsByClassName('parent')[0].style.gridTemplateColumns = '2fr 1fr 2fr'
 
+        }
+
+        flight = jump;
+      } else {
+        alert("Please add questions first")
+      }
     }
-    flight = jump;
   } else if (e.code === 'Enter') {
     try {
       document.getElementById('button').click()
