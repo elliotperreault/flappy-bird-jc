@@ -17,6 +17,8 @@ function ReturnAlert(question = "question") {
     var input = document.createElement('input');
     input.id = 'QuestionInput';
     input.type = 'text';
+    input.maxLength = 47;
+    input.minLength = 1;
     input.placeholder = 'Enter your question';
     document.getElementById('centeredDiv').appendChild(input);
 
@@ -24,7 +26,9 @@ function ReturnAlert(question = "question") {
     var input = document.createElement('input');
     input.id = 'AnswerInput';
     input.type = 'text';
+    input.minLength = 1;
     input.placeholder = 'Enter your answer';
+    input.maxLength = 31;
     document.getElementById('centeredDiv').appendChild(input);
 
 
@@ -38,18 +42,28 @@ function ReturnAlert(question = "question") {
         //add content to local storage
         var question = document.getElementById('QuestionInput').value;
         var answer = document.getElementById('AnswerInput').value;
-        console.log(question);
-        console.log(answer);
+        if (question === "" || answer === "") {
+            return loadWarning("You can't leave a blank field")
+        }
+
+
+
         var questionObj = JSON.parse(localStorage.getItem("question"));
-        questionObj[question] = answer;
-        localStorage.setItem("question", JSON.stringify(questionObj));
 
 
-        console.log('button clicked');
-        document.getElementById('leftSide').removeChild(document.getElementById('centeredDiv'));
-        document.getElementById('leftSide').style.pointerEvents = 'auto';
 
-        location.reload();
+        if (Object.keys(questionObj).length >= 15) {
+            loadWarning("You can't add more than 15 questions")
+            console.log("You can't add more than 15 questions")
+        } else {
+            questionObj[question] = answer;
+            localStorage.setItem("question", JSON.stringify(questionObj));
+            document.getElementById('leftSide').removeChild(document.getElementById('centeredDiv'));
+            document.getElementById('leftSide').style.pointerEvents = 'auto';
+
+            location.reload();
+        }
+
 
 
     }
@@ -109,6 +123,18 @@ function loadQuestion() {
 
         // Append the item div to the list
         leftSide.appendChild(itemDiv);
+
+
+        itemDiv.addEventListener('click', function (e) {
+            //delete the question
+            var questionObj = JSON.parse(localStorage.getItem("question"));
+            delete questionObj[e.target.parentElement.getElementsByClassName('question')[0].textContent];
+            localStorage.setItem("question", JSON.stringify(questionObj));
+
+            //delete item from page
+            leftSide.removeChild(e.target.parentElement);
+        })
+
     }
 
 
@@ -120,4 +146,19 @@ function loadQuestion() {
 
     leftSide.appendChild(addButton);
 
+
+
 }
+
+function loadWarning(warnMessage) {
+    if (document.getElementById('warning') == null) {
+        var warning = document.createElement('div');
+        warning.id = 'warning';
+        warning.textContent = warnMessage;
+        document.getElementById('centeredDiv').appendChild(warning);
+        setTimeout(() => {
+            document.getElementById('centeredDiv').removeChild(document.getElementById('warning'));
+        }, 1000);
+    }
+}
+
