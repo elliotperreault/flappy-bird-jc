@@ -6,7 +6,7 @@ img.src = "https://i.ibb.co/Q9yv5Jk/flappy-bird-set.png";
 // general settings
 let gamePlaying = false;
 let bestScore = localStorage.getItem('bestScore') || 0;
-const gravity = .45;
+const gravity = 1.45;
 const speed = 5.2;
 const size = [51, 36];
 const jump = -11.5;
